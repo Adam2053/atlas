@@ -9,7 +9,7 @@ const Country = () => {
     capital: "",
     region: "",
   });
-  const [options , setOptions] = useState([])
+  const [options, setOptions] = useState([]);
 
   const [isloading, setIsLoading] = useState(false);
   //   const [display, setDisplay] = useState("none");
@@ -22,16 +22,16 @@ const Country = () => {
         .then((res) => res.data.data);
       console.log(response);
       setCountryData(response);
-      let array = [response.mainCountry.name, ...response.options]
+      let array = [response.mainCountry.name, ...response.options];
       const randomAns = (array) => {
         const ans = array.shift();
         const rand = Math.floor(Math.random() * array.length);
         array.splice(rand, 0, ans);
-    
-        console.log('random',array)
-        setOptions(array)
-      }
-      randomAns(array)
+
+        // console.log('random',array)
+        setOptions(array);
+      };
+      randomAns(array);
     } catch (err) {
       console.log(err);
     }
@@ -98,7 +98,7 @@ const Country = () => {
           </div>
         ))}
       </div>
-      
+
       <button
         style={{
           marginTop: "2rem",
