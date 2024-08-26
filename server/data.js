@@ -134,14 +134,37 @@ const removeCountriesWithNoFlags = async () => {
 
     console.log(countryData.length);
 
-    // change the previos ids with the new continuos id of the country 
+    // change the previos ids with the new continuos id of the country
     for (let i = 0; i < countryData.length; i++) {
       countryData[i].id = i + 1;
     }
-    console.log(countryData[countryData.length-1]);
+    console.log(countryData[countryData.length - 1]);
   } catch (err) {
     console.log(err);
   }
 };
 
-removeCountriesWithNoFlags();
+// removeCountriesWithNoFlags();
+
+function getRandomNumber(max) {
+  return Math.floor(Math.random() * (max + 1));
+}
+
+function generateUniqueRandomNumbers(mainNumber, max) {
+  const randomNumbers = new Set();
+
+  while (randomNumbers.size < 3) {
+    const num = getRandomNumber(max);
+    if (num !== mainNumber && !randomNumbers.has(num)) {
+      randomNumbers.add(num);
+    }
+  }
+
+  return Array.from(randomNumbers);
+}
+
+const mainNumber = getRandomNumber(220);
+console.log("Main Number:", mainNumber);
+
+const uniqueNumbers = generateUniqueRandomNumbers(mainNumber, 220);
+console.log("Three Unique Numbers:", uniqueNumbers);

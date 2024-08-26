@@ -19,6 +19,7 @@ const Country = () => {
         .get("http://localhost:3000/random")
         .then((res) => res.data.data);
       setCountryData(response);
+      console.log(response);
     } catch (err) {
       console.log(err);
     }
@@ -42,13 +43,13 @@ const Country = () => {
     <div>
       <div style={{ padding: "0.5rem", background: "grey" }}>
         <div>
-          <h1>Country's Name : {countryData.name}</h1>
+          <h1>Country's Name : {countryData.mainCountry?.name}</h1>
           {isloading ? (
             <div>Loading ...</div>
           ) : (
             <img
               style={{ height: "300px", width: "500px" }}
-              src={countryData.flag}
+              src={countryData.mainCountry?.flag}
               alt=""
             />
           )}
@@ -56,11 +57,27 @@ const Country = () => {
         <div>
           <h2>
             Capital:{" "}
-            {`${countryData.capital ? countryData.capital : "Not Designated"}`}
+            {`${
+              countryData.mainCountry?.capital
+                ? countryData.mainCountry?.capital
+                : "Not Designated"
+            }`}
           </h2>
-          <h2>Region: {`${countryData.region ? countryData.region : "Not Designated"}`}</h2>
+          <h2>
+            Region:{" "}
+            {`${
+              countryData.mainCountry?.region
+                ? countryData.mainCountry?.region
+                : "Not Designated"
+            }`}
+          </h2>
         </div>
       </div>
+      <div>Options: {countryData.options?.map((opt) => (
+        <div key={opt}>
+          <button style={{padding:'0.5rem', marginBlock: '0.5rem'}}>{opt}</button>
+        </div>
+      ))}</div>
       <button
         style={{
           marginTop: "2rem",

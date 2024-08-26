@@ -75,17 +75,42 @@ export const getSingleCountry = async (req, res) => {
 export const getRandomCountry = async (req, res) => {
   try {
     // get random country from the database
-    const randomNumber = Math.floor(Math.random() * 221); // this will not exceep the number 250
-    const randomCountry = await Flags.findOne({ id: randomNumber });
+    function getRandomNumber(max) {
+      return Math.floor(Math.random() * (max + 1));
+    }
 
-    
+    function generateUniqueRandomNumbers(mainNumber, max) {
+      const randomNumbers = new Set();
+
+      while (randomNumbers.size < 3) {
+        const num = getRandomNumber(max);
+        if (num !== mainNumber && !randomNumbers.has(num)) {
+          randomNumbers.add(num);
+        }
+      }
+
+      return Array.from(randomNumbers);
+    }
+
+    const mainNumber = getRandomNumber(220);
+    console.log("Main Number:", mainNumber);
+
+    const uniqueNumbers = generateUniqueRandomNumbers(mainNumber, 220);
+    console.log("Three Unique Numbers:", uniqueNumbers);
+
+    const randomCountry = await Flags.find({
+      id: [mainNumber, ...uniqueNumbers],
+    });
+
     res.status(200).json({
       success: true,
       data: {
-        name: randomCountry.name,
-        flag: randomCountry.flag,
-        region: randomCountry.region,
-        capital: randomCountry.capital
+        mainCountry: randomCountry[0],
+        options: [
+          randomCountry[1].name,
+          randomCountry[2].name,
+          randomCountry[3].name,
+        ],
       },
       message: "Random country fetched successfully",
     });
