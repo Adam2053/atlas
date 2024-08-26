@@ -9,6 +9,8 @@ const Country = () => {
     capital: "",
     region: "",
   });
+  const [options , setOptions] = useState([])
+
   const [isloading, setIsLoading] = useState(false);
   //   const [display, setDisplay] = useState("none");
   const [next, setNext] = useState(false);
@@ -18,8 +20,18 @@ const Country = () => {
       const response = await axios
         .get("http://localhost:3000/random")
         .then((res) => res.data.data);
-      setCountryData(response);
       console.log(response);
+      setCountryData(response);
+      let array = [response.mainCountry.name, ...response.options]
+      const randomAns = (array) => {
+        const ans = array.shift();
+        const rand = Math.floor(Math.random() * array.length);
+        array.splice(rand, 0, ans);
+    
+        console.log('random',array)
+        setOptions(array)
+      }
+      randomAns(array)
     } catch (err) {
       console.log(err);
     }
@@ -37,8 +49,11 @@ const Country = () => {
     setIsLoading(true);
     fetchFlag();
     setIsLoading(false);
+
+    // console.log(countryData);
     // setDisplay("block");
   }, [next]);
+
   return (
     <div>
       <div style={{ padding: "0.5rem", background: "grey" }}>
@@ -73,11 +88,17 @@ const Country = () => {
           </h2>
         </div>
       </div>
-      <div>Options: {countryData.options?.map((opt) => (
-        <div key={opt}>
-          <button style={{padding:'0.5rem', marginBlock: '0.5rem'}}>{opt}</button>
-        </div>
-      ))}</div>
+      <div>
+        Options:{" "}
+        {options?.map((opt) => (
+          <div key={opt}>
+            <button style={{ padding: "0.5rem", marginBlock: "0.5rem" }}>
+              {opt}
+            </button>
+          </div>
+        ))}
+      </div>
+      
       <button
         style={{
           marginTop: "2rem",
