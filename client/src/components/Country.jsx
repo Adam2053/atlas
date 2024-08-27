@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Country = () => {
-  const [flag, setFlag] = useState("");
   const [countryData, setCountryData] = useState({
     name: "",
     flag: "",
@@ -10,9 +9,7 @@ const Country = () => {
     region: "",
   });
   const [options, setOptions] = useState([]);
-
   const [isloading, setIsLoading] = useState(false);
-  //   const [display, setDisplay] = useState("none");
   const [next, setNext] = useState(false);
 
   const fetchFlag = async () => {
@@ -20,7 +17,7 @@ const Country = () => {
       const response = await axios
         .get("http://localhost:3000/random")
         .then((res) => res.data.data);
-      console.log(response);
+      // console.log(response);
       setCountryData(response);
       let array = [response.mainCountry.name, ...response.options];
       const randomAns = (array) => {
