@@ -93,10 +93,10 @@ export const getRandomCountry = async (req, res) => {
     }
 
     const mainNumber = getRandomNumber(220);
-    console.log("Main Number:", mainNumber);
+    // console.log("Main Number:", mainNumber);
 
     const uniqueNumbers = generateUniqueRandomNumbers(mainNumber, 220);
-    console.log("Three Unique Numbers:", uniqueNumbers);
+    // console.log("Three Unique Numbers:", uniqueNumbers);
 
     const randomCountry = await Flags.find({
       id: [mainNumber, ...uniqueNumbers],
