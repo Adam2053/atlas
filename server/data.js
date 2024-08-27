@@ -1,5 +1,6 @@
 import axios from "axios";
 import jsonData from "./data/countries/countries.json" assert { type: "json" };
+import allData from "./data/all/all.json" assert { type: "json" };
 
 let countriesName = [];
 
@@ -164,7 +165,56 @@ function generateUniqueRandomNumbers(mainNumber, max) {
 }
 
 const mainNumber = getRandomNumber(220);
-console.log("Main Number:", mainNumber);
+// console.log("Main Number:", mainNumber);
 
 const uniqueNumbers = generateUniqueRandomNumbers(mainNumber, 220);
-console.log("Three Unique Numbers:", uniqueNumbers);
+// console.log("Three Unique Numbers:", uniqueNumbers);
+
+const allDataCountries = async () => {
+  try {
+    const data = [];
+
+    return allData.map(country => (
+      {
+        country: country.name,
+        states: country.states.map(state => (
+          {
+            state: state.name,
+            cities: state.cities.map(city => city.name)
+          }
+        ))
+      }
+    ))
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+console.log(allDataCountries())
+
+const obj = [
+  {
+    name: "USA",
+    id: 1,
+    states: [
+      {
+        name: "California",
+        id: 1,
+        cities: [
+          { name: "San Francisco", id: 1 },
+          { id: 1, name: "Los Angeles" },
+          { id: 1, name: "San Diego" },
+        ],
+      },
+      {
+        name: "Texas",
+        id: 1,
+        cities: [
+          { id: 1, name: "Austin" },
+          { id: 1, name: "Houston" },
+          { id: 1, name: "San Antonio" },
+        ],
+      },
+    ],
+  },
+];

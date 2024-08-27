@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 import Country from "../models/country.model.js";
 import Flags from "../models/countryFlags.model.js";
+import Data from "../models/all.data.js";
 import axios from "axios";
 import jsonData from "../data/countries/countries.json" assert { type: "json" };
+import allData from "../data/all/all.json" assert { type: "json" };
 
 export const addFlag = async (req, res) => {
   try {
@@ -175,3 +177,31 @@ export const getRandomCountry = async (req, res) => {
 //     })
 //   }
 // };
+
+export const addAllData = async (req, res) => {
+  try {
+    const data = allData.map((country) => ({
+      name: country.name,
+      states: country.states.map((state) => ({
+        name: state.name,
+        cities: state.cities.map((city) => ({
+          name: city.name
+        })),
+      })),
+    }));
+
+    
+    await Data.insertMany(data);
+
+    res.status(201).json({
+      success: true,
+      message: "All data added successfully",
+    });
+  } catch (e) {
+    res.status(500).json({
+      success: false,
+      message: "Error fetching data",
+      error: e.message,
+    });
+  }
+};
