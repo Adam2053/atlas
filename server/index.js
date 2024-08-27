@@ -4,7 +4,7 @@ import axios from "axios";
 import dotenv from 'dotenv'
 // import connectionToDb from "./db/connectionToDb.js";
 import connectToDb from "./db/connectionToDb.js";
-import { addAllData, addFlag,  getRandomCountry, getSingleCountry } from "./controllers/country.controllers.js";
+import { addAllData, addFlag,  everyData,  getRandomCountry, getSingleCountry, getSingleName } from "./controllers/country.controllers.js";
 
 dotenv.config();
 const app = express();
@@ -67,7 +67,7 @@ app.get("/all", async (req, res) => {
 // app.post('/add', addFlag)
 // app.post('/addFlag', addFlagToCountry)
 // app.get('/country/:code', getSingleCountry)
-app.post('/random', addAllData)
+app.get('/random', getRandomCountry)
 
 const port = process.env.PORT || 3000;
 const MONGO_URI = 'mongodb+srv://arpitmarathe2002:WFSIcNT70wOSO4uB@cluster0.bszpt.mongodb.net/atlas?retryWrites=true&w=majority&appName=Cluster0';
