@@ -76,8 +76,8 @@ app.get("/all", async (req, res) => {
 // app.post('/add', addFlag)
 // app.post('/addFlag', addFlagToCountry)
 // app.get('/country/:code', getSingleCountry)
-app.get("/random", getRandomCountry);
-app.post("/get/:name", getSingleName);
+app.get("/api/random", getRandomCountry);
+app.post("/api/get/:name", getSingleName);
 
 const port = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
