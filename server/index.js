@@ -17,7 +17,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: 'https://atlas-game-beta.vercel.app/'
+  origin: 'https://atlas-game-beta.vercel.app'
 }));
 app.use(express.json());
 
