@@ -3,8 +3,8 @@ import Country from "../models/country.model.js";
 import Flags from "../models/countryFlags.model.js";
 import Data from "../models/all.data.js";
 import axios from "axios";
-import jsonData from "../data/countries/countries.json" assert { type: "json" };
-import allData from "../data/all/all.json" assert { type: "json" };
+import jsonData from "../../data/countries/countries.json" assert { type: "json" };
+import allData from "../../data/all/all.json" assert { type: "json" };
 import Name from "../models/allNames.js";
 
 export const addFlag = async (req, res) => {
@@ -211,21 +211,21 @@ export const everyData = async (req, res) => {
     const data = await Data.find({});
     const allNames = [];
     data.forEach((c) => {
-      allNames.push({name: c.name});
+      allNames.push({ name: c.name });
       c.states.forEach((s) => {
-        allNames.push({name: s.name});
+        allNames.push({ name: s.name });
         s.cities.forEach((city) => {
-          allNames.push({name: city.name});
+          allNames.push({ name: city.name });
         });
       });
     });
 
-    await Name.insertMany(allNames)
+    await Name.insertMany(allNames);
 
     res.status(201).json({
       success: true,
       message: "All data fetched successfully",
-    })
+    });
   } catch (e) {
     res.status(500).json({
       success: false,
@@ -238,23 +238,23 @@ export const everyData = async (req, res) => {
 export const getSingleName = async (req, res) => {
   try {
     const name = req.params.name;
-    const data = await Name.findOne({name});
-    if(!data) {
+    const data = await Name.findOne({ name });
+    if (!data) {
       return res.status(200).json({
         success: false,
         message: "Name not found",
-      })
-    }else{
+      });
+    } else {
       return res.status(200).json({
         success: true,
-        data: {name: data.name},
-      })
+        data: { name: data.name },
+      });
     }
-  }catch (e) {
+  } catch (e) {
     res.status(500).json({
       success: false,
       message: "Error fetching data",
       error: e.message,
-    })
+    });
   }
-}
+};

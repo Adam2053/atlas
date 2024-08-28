@@ -11,14 +11,16 @@ import {
   getRandomCountry,
   getSingleCountry,
   getSingleName,
-} from "./controllers/country.controllers.js";
+} from "./api/controllers/country.controllers.js";
 
 dotenv.config();
 const app = express();
 
-app.use(cors({
-  origin: 'https://atlas-game-beta.vercel.app'
-}));
+app.use(
+  cors({
+    origin: "https://atlas-game-beta.vercel.app",
+  })
+);
 app.use(express.json());
 
 app.get("/", (req, res) => {
