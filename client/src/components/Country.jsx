@@ -23,7 +23,7 @@ const Country = () => {
   const fetchFlag = async () => {
     try {
       const response = await axios
-        .get("http://localhost:3000/random")
+        .get("https://atlas-backend-omega.vercel.app/random")
         .then((res) => res.data.data);
 
       setCountryData(response);
