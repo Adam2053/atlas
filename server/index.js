@@ -1,10 +1,17 @@
 import express from "express";
 import cors from "cors";
 import axios from "axios";
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 // import connectionToDb from "./db/connectionToDb.js";
 import connectToDb from "./db/connectionToDb.js";
-import { addAllData, addFlag,  everyData,  getRandomCountry, getSingleCountry, getSingleName } from "./controllers/country.controllers.js";
+import {
+  addAllData,
+  addFlag,
+  everyData,
+  getRandomCountry,
+  getSingleCountry,
+  getSingleName,
+} from "./controllers/country.controllers.js";
 
 dotenv.config();
 const app = express();
@@ -67,11 +74,11 @@ app.get("/all", async (req, res) => {
 // app.post('/add', addFlag)
 // app.post('/addFlag', addFlagToCountry)
 // app.get('/country/:code', getSingleCountry)
-app.get('/random', getRandomCountry)
-app.post('/get/:name', getSingleName)
+app.get("/random", getRandomCountry);
+app.post("/get/:name", getSingleName);
 
 const port = process.env.PORT || 3000;
-const MONGO_URI = 'mongodb+srv://arpitmarathe2002:WFSIcNT70wOSO4uB@cluster0.bszpt.mongodb.net/atlas?retryWrites=true&w=majority&appName=Cluster0';
+const MONGO_URI = process.env.MONGO_URI;
 app.listen(port, (req, res) => {
   console.log(`The server is listening on ${port} `);
   connectToDb(MONGO_URI);
