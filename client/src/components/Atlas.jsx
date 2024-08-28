@@ -4,9 +4,8 @@ import axios from "axios";
 const Atlas = () => {
   const [input, setInput] = useState("");
   const [alpha, setAlpha] = useState("");
-  const [next, setNext] = useState(false)
+  const [next, setNext] = useState(false);
   const inputRef = useRef(null);
-
 
   const handleChange = (e) => {
     // set the input value to the new value
