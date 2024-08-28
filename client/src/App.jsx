@@ -1,15 +1,21 @@
 
 import './App.css'
 import Country from './components/Country'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Home from './components/Home'
+import Atlas from './components/Atlas'
 
 function App() {
  
 
   return (
-    <div>
-      <h1>Country Application</h1>
-      <Country />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path= '/' element={<Home />} />
+        <Route path= '/country' element={<Country />} />
+        <Route path= '/atlas' element={<Atlas />} />
+      </Routes>
+    </BrowserRouter>
 
   )
 }
