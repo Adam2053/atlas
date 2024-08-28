@@ -68,7 +68,7 @@ app.get("/all", async (req, res) => {
 // app.post('/addFlag', addFlagToCountry)
 // app.get('/country/:code', getSingleCountry)
 app.get('/random', getRandomCountry)
-// app.post('/random/:name', getSingleName)
+app.post('/get/:name', getSingleName)
 
 const port = process.env.PORT || 3000;
 const MONGO_URI = 'mongodb+srv://arpitmarathe2002:WFSIcNT70wOSO4uB@cluster0.bszpt.mongodb.net/atlas?retryWrites=true&w=majority&appName=Cluster0';
