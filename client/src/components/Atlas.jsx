@@ -36,10 +36,6 @@ const Atlas = () => {
 
   useEffect(() => {
     setAlpha(randomAlphabet());
-
-    return () => {
-      inputRef.current.value = "";
-    };
   }, []);
 
   return (
@@ -50,6 +46,7 @@ const Atlas = () => {
         minHeight: "100vh",
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: "#7fd1b9",
       }}
     >
       <h1>Atlas The Game</h1>
@@ -57,11 +54,33 @@ const Atlas = () => {
       <input
         ref={inputRef}
         onChange={handleChange}
-        style={{ padding: "0.6rem", marginTop: "1rem" }}
+        style={{
+          padding: "1rem",
+          marginTop: "1rem",
+          borderRadius: "0.4rem",
+          backgroundColor: "#eff7f6",
+          border: "none",
+          fontSize: '1rem',
+          fontWeight: 'bold'
+        }}
         type="text"
         placeholder="enter the cities name"
       />
-      <button type="submit" onClick={handleClick}>
+      <button
+        style={{
+          marginTop: "1rem",
+          padding: "1rem",
+          borderRadius: "0.4rem",
+          border: "none",
+          background: "#ece2d0",
+          fontWeight: "700",
+          fontSize: "1rem",
+          cursor: "pointer",
+        }}
+    
+        type="submit"
+        onClick={handleClick}
+      >
         Submit the name
       </button>
     </div>
