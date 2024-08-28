@@ -24,15 +24,14 @@ const Atlas = () => {
 
     if (response.data.success) {
       alert(`The city ${input} is available in the database!`);
-
+      setAlpha(input[input.length - 1].toUpperCase());
       inputRef.current.value = "";
     } else {
       alert(`The city ${input} is not available in the database!`);
-
       inputRef.current.value = "";
     }
 
-    setNext(false ? true : false); // update the next state to true
+    // update the next state to true
   };
 
   useEffect(() => {
@@ -41,7 +40,7 @@ const Atlas = () => {
     return () => {
       inputRef.current.value = "";
     };
-  }, [next]);
+  }, []);
 
   return (
     <div
