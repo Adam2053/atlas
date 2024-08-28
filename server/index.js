@@ -4,6 +4,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 // import connectionToDb from "./db/connectionToDb.js";
 import connectToDb from "./db/connectionToDb.js";
+import routes from './api/routes/routes.js'
 import {
   addAllData,
   addFlag,
@@ -78,8 +79,8 @@ app.get("/all", async (req, res) => {
 // app.post('/add', addFlag)
 // app.post('/addFlag', addFlagToCountry)
 // app.get('/country/:code', getSingleCountry)
-app.get("/api/random", getRandomCountry);
-app.post("/api/get/:name", getSingleName);
+app.get("/api", getRandomCountry);
+app.post("/api", getSingleName);
 
 const port = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
