@@ -20,7 +20,7 @@ const Atlas = () => {
 
   const handleClick = async () => {
     // make the api call to get if the input is availabe in the database
-    const response = await axios.post(`https://atlas-backend-omega.vercel.app/api/get/${input}`);
+    const response = await axios.post(`http://localhost:3000/api/get/${input}`);
 
     if (response.data.success) {
       alert(`The city ${input} is available in the database!`);

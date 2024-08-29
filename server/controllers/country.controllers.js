@@ -3,8 +3,8 @@ import Country from "../models/country.model.js";
 import Flags from "../models/countryFlags.model.js";
 import Data from "../models/all.data.js";
 import axios from "axios";
-import jsonData from "../../data/countries/countries.json" assert { type: "json" };
-import allData from "../../data/all/all.json" assert { type: "json" };
+import jsonData from "../data/countries/countries.json" assert { type: "json" };
+import allData from "../data/all/all.json" assert { type: "json" };
 import Name from "../models/allNames.js";
 
 export const addFlag = async (req, res) => {

@@ -4,7 +4,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 // import connectionToDb from "./db/connectionToDb.js";
 import connectToDb from "./db/connectionToDb.js";
-import routes from "./api/routes/routes.js";
+import routes from "./routes/routes.js";
 import {
   addAllData,
   addFlag,
@@ -12,16 +12,12 @@ import {
   getRandomCountry,
   getSingleCountry,
   getSingleName,
-} from "./api/controllers/country.controllers.js";
+} from "./controllers/country.controllers.js";
 
 dotenv.config();
 const app = express();
 
-app.use(
-  cors({
-    origin: "https://atlas-game-beta.vercel.app",
-  })
-);
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -81,8 +77,7 @@ app.get("/all", async (req, res) => {
 // app.get('/country/:code', getSingleCountry)
 // app.get("/api", getRandomCountry);
 // app.post("/api", getSingleName);
-app.use('/api', routes);
-
+app.use("/api", routes);
 
 const port = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
@@ -90,3 +85,5 @@ app.listen(port, (req, res) => {
   console.log(`The server is listening on ${port} `);
   connectToDb(MONGO_URI);
 });
+
+export default app;
